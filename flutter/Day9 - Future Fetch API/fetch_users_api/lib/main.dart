@@ -49,11 +49,11 @@ class _MyHomePageState extends State<MyHomePage> {
     final dio = Dio();
     final String url = 'https://jsonplaceholder.typicode.com/users';
     Response response = await dio.get(url);
-    
+
     if (response.statusCode == 200) {
       List<dynamic> data = response.data;
       List<Map<String, dynamic>> usersList = data.cast<Map<String, dynamic>>();
-      return usersList.map((e) => UserModel.fromApi(e)).toList();
+      return usersList.map((e) => UserModel.fromJson(e)).toList();
     } else {
       throw Exception('something went wrong');
     }

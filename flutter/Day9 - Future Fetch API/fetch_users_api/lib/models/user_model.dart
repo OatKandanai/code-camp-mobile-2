@@ -19,16 +19,16 @@ class UserModel {
     required this.company,
   });
 
-  factory UserModel.fromApi(Map<String, dynamic> data) {
+  factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: data['id'] ?? -1,
-      name: data['name'] ?? 'no name',
-      username: data['username'] ?? 'no username',
-      email: data['email'] ?? 'no email',
-      address: Address data['address'],
-      phone: data['phone'],
-      website: data['website'],
-      company: data['company'],
+      id: json['id'] ?? -1,
+      name: json['name'] ?? 'no name',
+      username: json['username'] ?? 'no username',
+      email: json['email'] ?? 'no email',
+      address: Address.fromJson(json['address']),
+      phone: json['phone'],
+      website: json['website'],
+      company: Company.fromJson(json['company']),
     );
   }
 }
@@ -40,10 +40,22 @@ class Address {
   final String zipcode;
   final Geo geo;
 
-  Address(this.street, this.suite, this.city, this.zipcode, this.geo);
+  Address({
+    required this.street,
+    required this.suite,
+    required this.city,
+    required this.zipcode,
+    required this.geo,
+  });
 
-  factory Address.fromJson(Map<String,dynamic> data){
-    return Address(street:data['street'], suite:data['suite'], city:data['street'], zipcode:data['street'], geo:Geo data['geo']);
+  factory Address.fromJson(Map<String, dynamic> json) {
+    return Address(
+      street: json['street'],
+      suite: json['suite'],
+      city: json['city'],
+      zipcode: json['zipcode'],
+      geo: Geo.fromJson(json['geo']),
+    );
   }
 }
 
@@ -51,9 +63,11 @@ class Geo {
   final String lat;
   final String long;
 
-  Geo(this.lat, this.long);
+  Geo({required this.lat, required this.long});
 
-  factory Geo
+  factory Geo.fromJson(Map<String, dynamic> json) {
+    return Geo(lat: json['lat'], long: json['lng']);
+  }
 }
 
 class Company {
@@ -61,7 +75,13 @@ class Company {
   final String catchPhrase;
   final String bs;
 
-  Company(this.name, this.catchPhrase, this.bs);
+  Company({required this.name, required this.catchPhrase, required this.bs});
 
-  factory Company
+  factory Company.fromJson(Map<String, dynamic> json) {
+    return Company(
+      name: json['name'],
+      catchPhrase: json['catchPhrase'],
+      bs: json['bs'],
+    );
+  }
 }
