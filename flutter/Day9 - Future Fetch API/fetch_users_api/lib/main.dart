@@ -1,3 +1,4 @@
+import 'package:fetch_users_api/screens/user_details.dart';
 import 'package:flutter/material.dart';
 import 'package:fetch_users_api/models/user_model.dart';
 import 'package:dio/dio.dart';
@@ -92,37 +93,55 @@ class _MyHomePageState extends State<MyHomePage> {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
                     final user = users[index];
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(12),
-                      ),
-                      elevation: 3,
-                      child: ListTile(
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 10,
-                        ),
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.deepPurple.shade100,
-                          child: Text(
-                            user.id.toString(),
-                            style: TextStyle(color: Colors.black),
+
+                    return GestureDetector(
+                      // on tap
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => UserDetails(
+                              name: user.name,
+                              email: user.email,
+                              address: user.address,
+                              phone: user.phone,
+                              website: user.website,
+                            ),
                           ),
+                        );
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadiusGeometry.circular(12),
                         ),
-                        title: Text(
-                          user.name,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
+                        elevation: 3,
+                        child: ListTile(
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 10,
                           ),
-                        ),
-                        subtitle: Text(
-                          user.email,
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        trailing: const Icon(
-                          Icons.account_circle,
-                          color: Colors.deepPurple,
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.deepPurple.shade100,
+                            child: Text(
+                              user.id.toString(),
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          title: Text(
+                            user.name,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
+                          ),
+                          subtitle: Text(
+                            user.email,
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          trailing: const Icon(
+                            Icons.account_circle,
+                            color: Colors.deepPurple,
+                          ),
                         ),
                       ),
                     );
@@ -135,7 +154,6 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
