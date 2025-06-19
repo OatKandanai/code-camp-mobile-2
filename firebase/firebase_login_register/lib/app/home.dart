@@ -34,9 +34,11 @@ class Home extends StatelessWidget {
             itemBuilder: (context, index) {
               final data = docs[index].data() as Map<String, dynamic>;
               return ListTile(
-                leading: CircleAvatar(child: Text("${data['age']}")),
-                title: Text(data['name']),
-                subtitle: Text("${data['email']}"),
+                leading: CircleAvatar(
+                  child: Text("${data['age'] ?? 'no age'}"),
+                ),
+                title: Text('${data['name'] ?? 'no name'}'),
+                subtitle: Text("${data['email'] ?? 'no email'}"),
                 trailing: IconButton(
                   onPressed: () => deleteUser(docs[index].id),
                   icon: Icon(Icons.delete),
