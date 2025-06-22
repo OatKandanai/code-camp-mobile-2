@@ -30,7 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
         // add email to database
         // 'userCredential.user!.uid' gives you the unique user ID (UID) assigned by Firebase.
-        // 'doc(userCredential.user!.uid)' creates a document where the document ID is the same as the Firebase Auth UID.
+        // 'doc(userCredential.user!.uid)' creates a document name, where the name is document ID that is the same as the Firebase Auth UID.
         // set() = "Create this document or replace its content."
         await users.doc(userCredential.user!.uid).set({
           'email': email,
