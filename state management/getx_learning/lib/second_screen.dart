@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_learning/controller.dart';
+import 'package:getx_learning/controller/controller.dart';
 
 class SecondScreen extends StatefulWidget {
   const SecondScreen({super.key});
@@ -10,7 +10,7 @@ class SecondScreen extends StatefulWidget {
 }
 
 class _SecondScreenState extends State<SecondScreen> {
-  final Controller count = Get.find();
+  final Controller controller = Get.find();
   final msg = Get.arguments;
 
   @override
@@ -23,7 +23,7 @@ class _SecondScreenState extends State<SecondScreen> {
             children: [
               Text(msg),
               const SizedBox(height: 20),
-              Text('Counter : ${count.counter}'),
+              Text('Counter : ${controller.counter.value}'),
               const SizedBox(height: 20),
               IconButton(
                 onPressed: Get.back,

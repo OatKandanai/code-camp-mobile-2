@@ -3,13 +3,12 @@ import 'package:get/get.dart';
 import 'package:getx_learning/services/local_service.dart';
 
 class Controller extends GetxController {
+  final RxInt counter = 0.obs;
+  late TextEditingController controller;
+  final RxString name = ''.obs;
   final LocalService localService;
 
   Controller({required this.localService});
-
-  RxInt counter = 0.obs;
-  final RxString name = ''.obs;
-  late TextEditingController controller;
 
   @override
   void onInit() {
@@ -18,7 +17,7 @@ class Controller extends GetxController {
     setupData();
   }
 
-  increment() => counter++;
+  increment() => counter.value++;
 
   void setupData() {
     controller.text = localService.readName();

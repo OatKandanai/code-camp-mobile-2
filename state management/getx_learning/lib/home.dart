@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_learning/controller.dart';
+import 'package:getx_learning/controller/controller.dart';
 
 class Home extends GetView<Controller> {
   const Home({super.key});
@@ -17,7 +17,7 @@ class Home extends GetView<Controller> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Obx(() => Text('Counter : ${controller.counter}')),
+              Obx(() => Text('Counter : ${controller.counter.value}')),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () => Get.toNamed('/second', arguments: 'my msg'),
